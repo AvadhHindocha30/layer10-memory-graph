@@ -1,7 +1,10 @@
-[
-  "Who authored #5817?",
-  "Which issues did nitin-999-code comment on?",
-  "What is the state of #5836?",
-  "What labels does #5836 have?",
-  "Which issues mention pallets/flask?"
-]
+{
+  "raw_path": "data/raw/github_corpus.json",
+  "questions": [
+    "What is #5942 blocked by?",
+    "What is the state of #5942?",
+    "List labels for #5942",
+    "Which issues mention_owner someone?",
+    "Which issues are duplicates of other issues?"
+  ]
+}
