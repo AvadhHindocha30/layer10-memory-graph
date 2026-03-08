@@ -1,10 +1,10 @@
 {
   "raw_path": "data/raw/github_corpus.json",
   "questions": [
-    "What is #5942 blocked by?",
-    "What is the state of #5942?",
-    "List labels for #5942",
-    "Which issues mention_owner someone?",
-    "Which issues are duplicates of other issues?"
+    "What is the state of #5881?",
+    "List labels for #5881",
+    "Who authored #5881?",
+    "What is #5901 a duplicate of?",
+    "Who commented on #5881?"
   ]
 }

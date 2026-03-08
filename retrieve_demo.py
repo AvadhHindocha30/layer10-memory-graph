@@ -18,26 +18,15 @@ def tokenize(s: str) -> List[str]:
 
 def claim_text(graph: Dict[str, Any], claim: Dict[str, Any]) -> str:
     ents = graph["entities"]
-    evs = graph["evidences"]
-    arts = graph["artifacts"]
 
     subj = ents.get(claim["subject_id"], {}).get("name", claim["subject_id"])
-    obj = ""
     if claim.get("object_id"):
         obj = ents.get(claim["object_id"], {}).get("name", claim["object_id"])
     else:
         obj = claim.get("object_text", "")
 
-    pieces = [claim["predicate"], str(subj), str(obj)]
-
-    # include evidence quotes to help matching
-    for ev_id in claim.get("evidence_ids", [])[:3]:
-        ev = evs.get(ev_id, {})
-        pieces.append(ev.get("quote", ""))
-        art = arts.get(ev.get("artifact_id", ""), {})
-        pieces.append(str(art.get("author", "")))
-
-    return " ".join(pieces)
+    # IMPORTANT: scoring should be based on structured fields ONLY
+    return " ".join([claim["predicate"], str(subj), str(obj)])
 
 
 def score_claim(q_tokens: List[str], text: str) -> int:

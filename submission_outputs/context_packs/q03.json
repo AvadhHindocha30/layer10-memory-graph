@@ -1,32 +1,23 @@
 {
-  "question": "List labels for #5942",
+  "question": "Who authored #5881?",
   "top_k": 5,
   "results": [
     {
-      "score": 2,
-      "predicate": "mentions",
-      "subject": "pallets/flask",
-      "object": "#5942",
+      "score": 4,
+      "predicate": "authored_issue",
+      "subject": "#5881",
+      "object": "davidism",
       "confidence": 1.0,
-      "valid_from": null,
+      "valid_from": "2026-01-05T18:52:04Z",
       "evidence": [
         {
-          "evidence_id": "evidence:fe738e28c3db",
-          "quote": "flask run should support pep723 Because no one wants to use: native pkgutil-style, declarative, non-declarative, setup.py, setup.cfg, pyproject.toml, pep517, setuptools, build, pip, namespace packag",
-          "artifact_id": "artifact:3d1714331d35",
-          "artifact_author": "thoughtsunificator",
-          "artifact_kind": "issue",
-          "artifact_created_at": "2026-03-06T17:11:48Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5942"
-        },
-        {
-          "evidence_id": "evidence:3d5d75284501",
-          "quote": "The `flask run` command starts the development server. As it says throughout the docs and in the terminal: > This is a development server. Do not use it in a production deployment. Use a production W",
-          "artifact_id": "artifact:90184f9999af",
+          "evidence_id": "evidence:3f786bdff02d",
+          "quote": "author: davidism",
+          "artifact_id": "artifact:9342c1373c57",
           "artifact_author": "davidism",
-          "artifact_kind": "comment",
-          "artifact_created_at": "2026-03-06T19:50:53Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-01-05T18:52:04Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5881"
         }
       ]
     },
@@ -51,67 +42,58 @@
     },
     {
       "score": 2,
-      "predicate": "commented_on",
-      "subject": "#5942",
-      "object": "davidism",
+      "predicate": "authored_issue",
+      "subject": "#5936",
+      "object": "adenbad",
       "confidence": 1.0,
-      "valid_from": "2026-03-06T19:50:53Z",
+      "valid_from": "2026-02-24T00:54:46Z",
       "evidence": [
         {
-          "evidence_id": "evidence:1c51a6aee857",
-          "quote": "commenter: davidism",
-          "artifact_id": "artifact:90184f9999af",
-          "artifact_author": "davidism",
-          "artifact_kind": "comment",
-          "artifact_created_at": "2026-03-06T19:50:53Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5942"
-        },
-        {
-          "evidence_id": "evidence:255246d9104d",
-          "quote": "commenter: davidism",
-          "artifact_id": "artifact:85dc837f2a46",
-          "artifact_author": "davidism",
-          "artifact_kind": "comment",
-          "artifact_created_at": "2026-03-06T20:57:36Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+          "evidence_id": "evidence:717b21d12b8d",
+          "quote": "author: adenbad",
+          "artifact_id": "artifact:f122ab94b9fb",
+          "artifact_author": "adenbad",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-02-24T00:54:46Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5936"
         }
       ]
     },
     {
       "score": 2,
-      "predicate": "commented_on",
-      "subject": "#5942",
-      "object": "thoughtsunificator",
+      "predicate": "authored_issue",
+      "subject": "#5934",
+      "object": "uwezkhan",
       "confidence": 1.0,
-      "valid_from": "2026-03-06T20:39:58Z",
+      "valid_from": "2026-02-21T21:16:02Z",
       "evidence": [
         {
-          "evidence_id": "evidence:f1ecb4a34f10",
-          "quote": "commenter: thoughtsunificator",
-          "artifact_id": "artifact:cfd1d4b1b5ac",
-          "artifact_author": "thoughtsunificator",
-          "artifact_kind": "comment",
-          "artifact_created_at": "2026-03-06T20:39:58Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+          "evidence_id": "evidence:1a0ab0fb8b39",
+          "quote": "author: uwezkhan",
+          "artifact_id": "artifact:d076a9884794",
+          "artifact_author": "uwezkhan",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-02-21T21:16:02Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5934"
         }
       ]
     },
     {
       "score": 2,
-      "predicate": "commented_on",
-      "subject": "#5942",
-      "object": "ThiefMaster",
+      "predicate": "authored_issue",
+      "subject": "#5933",
+      "object": "amadhan882",
       "confidence": 1.0,
-      "valid_from": "2026-03-06T20:42:09Z",
+      "valid_from": "2026-02-21T15:52:17Z",
       "evidence": [
         {
-          "evidence_id": "evidence:432dff9d0073",
-          "quote": "commenter: ThiefMaster",
-          "artifact_id": "artifact:1ebf2a501fe9",
-          "artifact_author": "ThiefMaster",
-          "artifact_kind": "comment",
-          "artifact_created_at": "2026-03-06T20:42:09Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+          "evidence_id": "evidence:f5002d261978",
+          "quote": "author: amadhan882",
+          "artifact_id": "artifact:500efbc908f3",
+          "artifact_author": "amadhan882",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-02-21T15:52:17Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5933"
         }
       ]
     }

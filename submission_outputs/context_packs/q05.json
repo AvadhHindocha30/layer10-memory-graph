@@ -1,144 +1,126 @@
 {
-  "question": "Which issues are duplicates of other issues?",
+  "question": "Who commented on #5881?",
   "top_k": 5,
   "results": [
     {
       "score": 6,
-      "predicate": "mentions",
-      "subject": "pallets/flask",
-      "object": "#5916",
+      "predicate": "commented_on",
+      "subject": "#5881",
+      "object": "davidism",
       "confidence": 1.0,
-      "valid_from": null,
+      "valid_from": "2026-01-05T18:53:29Z",
       "evidence": [
         {
-          "evidence_id": "evidence:e4932e5d10d3",
-          "quote": "`provide_automatic_options` is weird While dealing with trying to detect duplicate routes in https://github.com/pallets/werkzeug/issues/3105, I ran into an issue with Flask, which adds `OPTIONS` to e",
-          "artifact_id": "artifact:9051222db187",
-          "artifact_author": "davidism",
-          "artifact_kind": "issue",
-          "artifact_created_at": "2026-02-12T20:32:21Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5916"
-        },
-        {
-          "evidence_id": "evidence:8d9eed19dbb4",
-          "quote": "The config was actually added quite recently, and it turns out we already had the discussion about whether the config made sense https://github.com/pallets/flask/pull/5496",
-          "artifact_id": "artifact:f11dc21111a2",
+          "evidence_id": "evidence:00977bfe86d6",
+          "quote": "commenter: davidism",
+          "artifact_id": "artifact:160793b7ac1f",
           "artifact_author": "davidism",
           "artifact_kind": "comment",
-          "artifact_created_at": "2026-02-12T20:54:58Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5916"
+          "artifact_created_at": "2026-01-05T18:53:29Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5881"
+        },
+        {
+          "evidence_id": "evidence:219492a5af51",
+          "quote": "commenter: davidism",
+          "artifact_id": "artifact:9c89f41cb2af",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-01-05T18:55:38Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5881"
         }
       ]
     },
     {
       "score": 6,
-      "predicate": "mentions",
-      "subject": "pallets/flask",
-      "object": "#5887",
+      "predicate": "commented_on",
+      "subject": "#5881",
+      "object": "miguelgrinberg",
       "confidence": 1.0,
-      "valid_from": null,
+      "valid_from": "2026-01-06T00:13:59Z",
       "evidence": [
         {
-          "evidence_id": "evidence:fc04061cbf06",
-          "quote": "Add explicit support for async teardown_request handlers ### Summary At the moment, `teardown_request` handlers in Flask are synchronous and cannot be defined as async functions. This makes it harde",
-          "artifact_id": "artifact:437db9d8cab3",
-          "artifact_author": "AnshMNSoni",
-          "artifact_kind": "issue",
-          "artifact_created_at": "2026-01-13T07:40:27Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5887"
+          "evidence_id": "evidence:466bdd5fabb8",
+          "quote": "commenter: miguelgrinberg",
+          "artifact_id": "artifact:d003611c0726",
+          "artifact_author": "miguelgrinberg",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-01-06T00:13:59Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5881"
         },
         {
-          "evidence_id": "evidence:e50a7345fc47",
-          "quote": "This already works. https://flask.palletsprojects.com/en/stable/async-await/ Do not use LLM tools to generate issues on your behalf.",
-          "artifact_id": "artifact:273c586d2561",
-          "artifact_author": "davidism",
+          "evidence_id": "evidence:4eaa1cf8bd47",
+          "quote": "commenter: miguelgrinberg",
+          "artifact_id": "artifact:762eade061c8",
+          "artifact_author": "miguelgrinberg",
           "artifact_kind": "comment",
-          "artifact_created_at": "2026-01-13T15:05:06Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5887"
+          "artifact_created_at": "2026-01-06T11:52:42Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5881"
         }
       ]
     },
     {
-      "score": 6,
-      "predicate": "mentions",
-      "subject": "pallets/flask",
-      "object": "#5815",
+      "score": 4,
+      "predicate": "commented_on",
+      "subject": "#5942",
+      "object": "davidism",
       "confidence": 1.0,
-      "valid_from": null,
+      "valid_from": "2026-03-06T19:50:53Z",
       "evidence": [
         {
-          "evidence_id": "evidence:474b71b2e620",
-          "quote": "pass context internally instead of using contextvars Currently, there are a bunch of different methods on the `Flask` class that run to dispatch each request. Many of these access `request` and other",
-          "artifact_id": "artifact:b2f12f2bd8ed",
+          "evidence_id": "evidence:1c51a6aee857",
+          "quote": "commenter: davidism",
+          "artifact_id": "artifact:90184f9999af",
           "artifact_author": "davidism",
-          "artifact_kind": "issue",
-          "artifact_created_at": "2025-09-13T18:19:56Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5815"
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T19:50:53Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
         },
         {
-          "evidence_id": "evidence:066dcb78ffc9",
-          "quote": "Not a fan of deprecating it, for 99% of all apps the performance difference is unnecessary so the convenience wins IMHO. I think nobody wants to update their application to a change like this, also b",
-          "artifact_id": "artifact:f2a08b800141",
+          "evidence_id": "evidence:255246d9104d",
+          "quote": "commenter: davidism",
+          "artifact_id": "artifact:85dc837f2a46",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T20:57:36Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    },
+    {
+      "score": 4,
+      "predicate": "commented_on",
+      "subject": "#5942",
+      "object": "thoughtsunificator",
+      "confidence": 1.0,
+      "valid_from": "2026-03-06T20:39:58Z",
+      "evidence": [
+        {
+          "evidence_id": "evidence:f1ecb4a34f10",
+          "quote": "commenter: thoughtsunificator",
+          "artifact_id": "artifact:cfd1d4b1b5ac",
+          "artifact_author": "thoughtsunificator",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T20:39:58Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    },
+    {
+      "score": 4,
+      "predicate": "commented_on",
+      "subject": "#5942",
+      "object": "ThiefMaster",
+      "confidence": 1.0,
+      "valid_from": "2026-03-06T20:42:09Z",
+      "evidence": [
+        {
+          "evidence_id": "evidence:432dff9d0073",
+          "quote": "commenter: ThiefMaster",
+          "artifact_id": "artifact:1ebf2a501fe9",
           "artifact_author": "ThiefMaster",
           "artifact_kind": "comment",
-          "artifact_created_at": "2025-09-13T18:23:01Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5815"
-        }
-      ]
-    },
-    {
-      "score": 4,
-      "predicate": "mentions",
-      "subject": "pallets/flask",
-      "object": "#5901",
-      "confidence": 1.0,
-      "valid_from": null,
-      "evidence": [
-        {
-          "evidence_id": "evidence:e0a236f07382",
-          "quote": "Flask's blueprint's render templates rendering another blueprint's folder's html file !!! I was learning Flask & Web Application making. I am getting the problem when i am return the render templates",
-          "artifact_id": "artifact:1f93ae517825",
-          "artifact_author": "RanaUniverse",
-          "artifact_kind": "issue",
-          "artifact_created_at": "2026-01-26T04:48:05Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5901"
-        },
-        {
-          "evidence_id": "evidence:b1413914eec6",
-          "quote": "https://flask.palletsprojects.com/en/stable/blueprints/#templates Duplicate of #3747 and others",
-          "artifact_id": "artifact:2909cf75f582",
-          "artifact_author": "davidism",
-          "artifact_kind": "comment",
-          "artifact_created_at": "2026-01-26T04:51:33Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5901"
-        }
-      ]
-    },
-    {
-      "score": 4,
-      "predicate": "mentions",
-      "subject": "pallets/flask",
-      "object": "#5870",
-      "confidence": 1.0,
-      "valid_from": null,
-      "evidence": [
-        {
-          "evidence_id": "evidence:074433eaabcd",
-          "quote": "Teardown handler chain exception handling Flask executes registered teardown handlers (used for closing DB connections, releasing locks, etc.) in a chain. The do_teardown_request method which is supp",
-          "artifact_id": "artifact:7a053f2f5348",
-          "artifact_author": "0x-Apollyon",
-          "artifact_kind": "issue",
-          "artifact_created_at": "2025-12-24T15:27:55Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5870"
-        },
-        {
-          "evidence_id": "evidence:f69dc2caa257",
-          "quote": "From the [docs](https://flask.palletsprojects.com/en/stable/reqcontext/#teardown-callbacks) about teardown callbacks: > Be sure to write these functions in a way that does not depend on other callbac",
-          "artifact_id": "artifact:726a12c50fcd",
-          "artifact_author": "davidism",
-          "artifact_kind": "comment",
-          "artifact_created_at": "2025-12-24T16:01:34Z",
-          "artifact_url": "https://github.com/pallets/flask/issues/5870"
+          "artifact_created_at": "2026-03-06T20:42:09Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
         }
       ]
     }
