@@ -1,0 +1,119 @@
+{
+  "question": "List labels for #5942",
+  "top_k": 5,
+  "results": [
+    {
+      "score": 2,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5942",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:fe738e28c3db",
+          "quote": "flask run should support pep723 Because no one wants to use: native pkgutil-style, declarative, non-declarative, setup.py, setup.cfg, pyproject.toml, pep517, setuptools, build, pip, namespace packag",
+          "artifact_id": "artifact:3d1714331d35",
+          "artifact_author": "thoughtsunificator",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-03-06T17:11:48Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        },
+        {
+          "evidence_id": "evidence:3d5d75284501",
+          "quote": "The `flask run` command starts the development server. As it says throughout the docs and in the terminal: > This is a development server. Do not use it in a production deployment. Use a production W",
+          "artifact_id": "artifact:90184f9999af",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T19:50:53Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "authored_issue",
+      "subject": "#5942",
+      "object": "thoughtsunificator",
+      "confidence": 1.0,
+      "valid_from": "2026-03-06T17:11:48Z",
+      "evidence": [
+        {
+          "evidence_id": "evidence:0e0fe3ee2e27",
+          "quote": "author: thoughtsunificator",
+          "artifact_id": "artifact:3d1714331d35",
+          "artifact_author": "thoughtsunificator",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-03-06T17:11:48Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "commented_on",
+      "subject": "#5942",
+      "object": "davidism",
+      "confidence": 1.0,
+      "valid_from": "2026-03-06T19:50:53Z",
+      "evidence": [
+        {
+          "evidence_id": "evidence:1c51a6aee857",
+          "quote": "commenter: davidism",
+          "artifact_id": "artifact:90184f9999af",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T19:50:53Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        },
+        {
+          "evidence_id": "evidence:255246d9104d",
+          "quote": "commenter: davidism",
+          "artifact_id": "artifact:85dc837f2a46",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T20:57:36Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "commented_on",
+      "subject": "#5942",
+      "object": "thoughtsunificator",
+      "confidence": 1.0,
+      "valid_from": "2026-03-06T20:39:58Z",
+      "evidence": [
+        {
+          "evidence_id": "evidence:f1ecb4a34f10",
+          "quote": "commenter: thoughtsunificator",
+          "artifact_id": "artifact:cfd1d4b1b5ac",
+          "artifact_author": "thoughtsunificator",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T20:39:58Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "commented_on",
+      "subject": "#5942",
+      "object": "ThiefMaster",
+      "confidence": 1.0,
+      "valid_from": "2026-03-06T20:42:09Z",
+      "evidence": [
+        {
+          "evidence_id": "evidence:432dff9d0073",
+          "quote": "commenter: ThiefMaster",
+          "artifact_id": "artifact:1ebf2a501fe9",
+          "artifact_author": "ThiefMaster",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T20:42:09Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    }
+  ]
+}

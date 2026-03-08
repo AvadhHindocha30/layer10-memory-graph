@@ -1,0 +1,146 @@
+{
+  "question": "What is the state of #5942?",
+  "top_k": 5,
+  "results": [
+    {
+      "score": 8,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5839",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:ef0c0cae7a5f",
+          "quote": "Really, I can't close connection??? Jesus Christ, what kind of library doesn’t allow forcefully closing a connection? Even after returning or using abort, it still continues to process data in the ba",
+          "artifact_id": "artifact:2129dd1763e2",
+          "artifact_author": "serbinskis",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2025-10-30T21:35:46Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5839"
+        },
+        {
+          "evidence_id": "evidence:85a919b45888",
+          "quote": "Now try again without being passive aggressive. This is not appreciated anywhere, but in particular not by open source maintainers.",
+          "artifact_id": "artifact:6e585c3e2821",
+          "artifact_author": "ThiefMaster",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2025-10-30T21:37:31Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5839"
+        }
+      ]
+    },
+    {
+      "score": 6,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5942",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:fe738e28c3db",
+          "quote": "flask run should support pep723 Because no one wants to use: native pkgutil-style, declarative, non-declarative, setup.py, setup.cfg, pyproject.toml, pep517, setuptools, build, pip, namespace packag",
+          "artifact_id": "artifact:3d1714331d35",
+          "artifact_author": "thoughtsunificator",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-03-06T17:11:48Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        },
+        {
+          "evidence_id": "evidence:3d5d75284501",
+          "quote": "The `flask run` command starts the development server. As it says throughout the docs and in the terminal: > This is a development server. Do not use it in a production deployment. Use a production W",
+          "artifact_id": "artifact:90184f9999af",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-03-06T19:50:53Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5942"
+        }
+      ]
+    },
+    {
+      "score": 6,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5915",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:3fa38d98cb83",
+          "quote": "Support for all methods in @app.route By default, `@app.route` sets `methods` to support only `GET` requests and the [documentation](https://flask.palletsprojects.com/en/stable/api/#flask.Flask.route",
+          "artifact_id": "artifact:06f88204aefa",
+          "artifact_author": "vladko312",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-02-11T22:24:21Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5915"
+        },
+        {
+          "evidence_id": "evidence:d254ead4bf63",
+          "quote": "Unlike Werkzeug, Flask has a more structured approach to routes and endpoints. I'm currently dealing with routing stuff right now, and do not want to surface more of these options in Flask. Adding mor",
+          "artifact_id": "artifact:a9d80db23931",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-02-11T22:47:07Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5915"
+        }
+      ]
+    },
+    {
+      "score": 6,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5901",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:e0a236f07382",
+          "quote": "Flask's blueprint's render templates rendering another blueprint's folder's html file !!! I was learning Flask & Web Application making. I am getting the problem when i am return the render templates",
+          "artifact_id": "artifact:1f93ae517825",
+          "artifact_author": "RanaUniverse",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-01-26T04:48:05Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5901"
+        },
+        {
+          "evidence_id": "evidence:b1413914eec6",
+          "quote": "https://flask.palletsprojects.com/en/stable/blueprints/#templates Duplicate of #3747 and others",
+          "artifact_id": "artifact:2909cf75f582",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-01-26T04:51:33Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5901"
+        }
+      ]
+    },
+    {
+      "score": 6,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5816",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:93a6fd172178",
+          "quote": "deprecate `should_ignore_error` This was added in f1918093ac70d589a4d67af0d77140734c06c13d as part of the original code to keep the context around for use in the debugger, tests, etc. It was not part",
+          "artifact_id": "artifact:4c406098304f",
+          "artifact_author": "davidism",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2025-09-14T16:38:15Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5816"
+        },
+        {
+          "evidence_id": "evidence:26c89a58bfb8",
+          "quote": "@davidism Would you assign this to me? I am interested in contributing to this.",
+          "artifact_id": "artifact:b6049d6e4d9f",
+          "artifact_author": "ish1416",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2025-11-07T20:56:09Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5816"
+        }
+      ]
+    }
+  ]
+}

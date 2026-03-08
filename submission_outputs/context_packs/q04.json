@@ -1,0 +1,146 @@
+{
+  "question": "Which issues mention_owner someone?",
+  "top_k": 5,
+  "results": [
+    {
+      "score": 4,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5916",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:e4932e5d10d3",
+          "quote": "`provide_automatic_options` is weird While dealing with trying to detect duplicate routes in https://github.com/pallets/werkzeug/issues/3105, I ran into an issue with Flask, which adds `OPTIONS` to e",
+          "artifact_id": "artifact:9051222db187",
+          "artifact_author": "davidism",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-02-12T20:32:21Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5916"
+        },
+        {
+          "evidence_id": "evidence:8d9eed19dbb4",
+          "quote": "The config was actually added quite recently, and it turns out we already had the discussion about whether the config made sense https://github.com/pallets/flask/pull/5496",
+          "artifact_id": "artifact:f11dc21111a2",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-02-12T20:54:58Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5916"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5897",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:63379a13516f",
+          "quote": "package detection fails with namespace package in editable mode Given a package which uses namespace packaging and has been installed using \"editable installs\", Flask's scaffold (specifically `_find_",
+          "artifact_id": "artifact:d86408506a50",
+          "artifact_author": "PeterJCLaw",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-01-24T19:34:47Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5897"
+        },
+        {
+          "evidence_id": "evidence:6c7f355e81c3",
+          "quote": "I can't reproduce this with the information provided. Thanks for providing a minimal example, but it's still a bit all over the place. You're still using the old `setup.py` pattern, rather than using",
+          "artifact_id": "artifact:cb1af6539fc8",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-01-26T05:03:12Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5897"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5887",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:fc04061cbf06",
+          "quote": "Add explicit support for async teardown_request handlers ### Summary At the moment, `teardown_request` handlers in Flask are synchronous and cannot be defined as async functions. This makes it harde",
+          "artifact_id": "artifact:437db9d8cab3",
+          "artifact_author": "AnshMNSoni",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2026-01-13T07:40:27Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5887"
+        },
+        {
+          "evidence_id": "evidence:e50a7345fc47",
+          "quote": "This already works. https://flask.palletsprojects.com/en/stable/async-await/ Do not use LLM tools to generate issues on your behalf.",
+          "artifact_id": "artifact:273c586d2561",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2026-01-13T15:05:06Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5887"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5870",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:074433eaabcd",
+          "quote": "Teardown handler chain exception handling Flask executes registered teardown handlers (used for closing DB connections, releasing locks, etc.) in a chain. The do_teardown_request method which is supp",
+          "artifact_id": "artifact:7a053f2f5348",
+          "artifact_author": "0x-Apollyon",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2025-12-24T15:27:55Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5870"
+        },
+        {
+          "evidence_id": "evidence:f69dc2caa257",
+          "quote": "From the [docs](https://flask.palletsprojects.com/en/stable/reqcontext/#teardown-callbacks) about teardown callbacks: > Be sure to write these functions in a way that does not depend on other callbac",
+          "artifact_id": "artifact:726a12c50fcd",
+          "artifact_author": "davidism",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2025-12-24T16:01:34Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5870"
+        }
+      ]
+    },
+    {
+      "score": 2,
+      "predicate": "mentions",
+      "subject": "pallets/flask",
+      "object": "#5863",
+      "confidence": 1.0,
+      "valid_from": null,
+      "evidence": [
+        {
+          "evidence_id": "evidence:92de507eac9c",
+          "quote": "Modern CSRF Protection Using `Sec-Fetch-Site` Header Flask's documentation states that CSRF protection requires a form validation framework (which Flask doesn't provide), necessitating one-time token",
+          "artifact_id": "artifact:3ad5e94fae1a",
+          "artifact_author": "sharoonthomas",
+          "artifact_kind": "issue",
+          "artifact_created_at": "2025-12-15T16:29:24Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5863"
+        },
+        {
+          "evidence_id": "evidence:57023cf036ea",
+          "quote": "> Handling Missing Headers: Current proposal allows requests with valid Origin header when Sec-Fetch-Site is missing. Should this be configurable or should we reject outright? Requiring `Origin` seem",
+          "artifact_id": "artifact:039865193e8c",
+          "artifact_author": "ThiefMaster",
+          "artifact_kind": "comment",
+          "artifact_created_at": "2025-12-15T16:32:26Z",
+          "artifact_url": "https://github.com/pallets/flask/issues/5863"
+        }
+      ]
+    }
+  ]
+}

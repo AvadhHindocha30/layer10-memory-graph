@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Layer10 Memory Explorer</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f172a;
+      --panel2:#0b1430;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --line:#22304a;
+      --accent:#60a5fa;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:24px;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg), #060816);
+      color: var(--text);
+    }
+    h1{ margin:0 0 6px; font-size: 32px; letter-spacing:.2px; }
+    .muted{ color: var(--muted); }
+    .topbar{ margin-bottom: 16px; }
+
+    /* Make left sidebar slightly wider, but keep most space for main panel */
+    .layout{
+      display:grid;
+      grid-template-columns: 420px 1fr;
+      gap: 16px;
+      align-items:start;
+    }
+
+    .panel{
+      background: linear-gradient(180deg, var(--panel), #0b1430);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .row{ margin-bottom: 12px; }
+    select, input{
+      width:100%;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #0b1430;
+      color: var(--text);
+      outline: none;
+    }
+    pre{
+      white-space: pre-wrap;
+      word-break: break-word;
+      background: #0a1022;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      max-height: 260px;
+      overflow: auto;
+    }
+    .chips{ display:flex; gap:8px; flex-wrap:wrap; margin-top: 8px; }
+    .chip{
+      font-size:12px;
+      padding:2px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:#0a1022;
+      color: var(--text);
+    }
+    .claim{
+      background: #0b1430;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    .claimTitle{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    .pill{
+      font-size: 12px;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #0a1022;
+    }
+    .claimMeta{ margin-top: 6px; font-size:12px; color: var(--muted); }
+    .evidence{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border-left: 4px solid var(--accent);
+      background: rgba(96,165,250,.10);
+      border: 1px solid rgba(96,165,250,.25);
+    }
+    code{ color:#93c5fd; }
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .card{
+      background: #0b1430;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      margin-bottom: 14px;
+    }
+    .cardTitle{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    /* BIG graph: this is now in main panel */
+    #egoGraph{
+      width: 100%;
+      height: 560px;
+      border-radius: 12px;
+      background: rgba(10,16,34,.65);
+      border: 1px solid var(--line);
+    }
+
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+      .twoCol{ grid-template-columns: 1fr; }
+      #egoGraph{ height: 420px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <h1>Layer10 Memory Explorer</h1>
+    <div class="muted">Browse entities, connected claims, and evidence (grounding).</div>
+  </div>
+
+  <div class="layout">
+    <!-- LEFT: controls + metadata -->
+    <div class="panel">
+      <div class="row">
+        <div class="muted">Pick an entity</div>
+        <select id="entitySelect"></select>
+      </div>
+
+      <div class="row twoCol">
+        <div>
+          <div class="muted">Filter claims (optional)</div>
+          <input id="filterBox" placeholder="type: blocked_by / label / owner ..." />
+        </div>
+        <div>
+          <div class="muted">Show</div>
+          <div class="chips">
+            <span class="chip" id="statsChip">loading…</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="muted">Entity details</div>
+        <pre id="entityDetails">loading…</pre>
+      </div>
+
+      <div class="row">
+        <div class="muted">Merge audit</div>
+        <pre id="mergeAudit">loading…</pre>
+      </div>
+    </div>
+
+    <!-- RIGHT: BIG graph + claims -->
+    <div class="panel">
+      <div class="card">
+        <div class="cardTitle">Graph view (ego)</div>
+        <svg id="egoGraph" viewBox="0 0 1200 560"></svg>
+        <div class="muted" style="margin-top:8px;">Tip: hover edges to see predicate; click nodes to navigate.</div>
+      </div>
+
+      <div class="muted">Connected claims</div>
+      <div id="claims"></div>
+    </div>
+  </div>
+
+<script>
+let graph = null;
+
+function labelEntity(eid){
+  const e = graph.entities[eid];
+  if(!e) return eid;
+  return `${e.name} (${e.entity_type})`;
+}
+
+function shortLabel(eid){
+  const e = graph.entities[eid];
+  if(!e) return eid.slice(0, 10);
+  let name = (e.name || "").toString();
+  if(name.length > 14) name = name.slice(0, 14) + "…";
+  // for issues like "#5817", keep as-is
+  return name;
+}
+
+function claimToText(c){
+  const subj = labelEntity(c.subject_id);
+  const obj = c.object_id ? labelEntity(c.object_id) : (c.object_text || "(none)");
+  return `${c.predicate} ${subj} -> ${obj}`;
+}
+
+/* ---------- Ego graph rendering (SVG, no libs) ---------- */
+
+function svgEl(name){
+  return document.createElementNS("http://www.w3.org/2000/svg", name);
+}
+
+function clearEgo(){
+  document.getElementById("egoGraph").innerHTML = "";
+}
+
+function drawNode(svg, x, y, eid, isCenter){
+  const g = svgEl("g");
+  g.setAttribute("cursor", "pointer");
+
+  const circle = svgEl("circle");
+  circle.setAttribute("cx", x);
+  circle.setAttribute("cy", y);
+  circle.setAttribute("r", isCenter ? 34 : 24);
+  circle.setAttribute("fill", isCenter ? "#2b4c86" : "#203a66");
+  circle.setAttribute("stroke", "#3e5f9b");
+  circle.setAttribute("stroke-width", "2");
+  g.appendChild(circle);
+
+  const text = svgEl("text");
+  text.setAttribute("x", x);
+  text.setAttribute("y", y + 4);
+  text.setAttribute("text-anchor", "middle");
+  text.setAttribute("font-size", "9");   // smaller text
+  text.setAttribute("fill", "#e8f0ff");
+  text.textContent = shortLabel(eid);
+  g.appendChild(text);
+
+  // tooltip
+  const title = svgEl("title");
+  title.textContent = labelEntity(eid);
+  g.appendChild(title);
+
+  g.addEventListener("click", () => {
+    const sel = document.getElementById("entitySelect");
+    sel.value = eid;
+    renderEntity(eid);
+  });
+
+  svg.appendChild(g);
+}
+
+function drawEdge(svg, x1, y1, x2, y2, pred){
+  const line = svgEl("line");
+  line.setAttribute("x1", x1);
+  line.setAttribute("y1", y1);
+  line.setAttribute("x2", x2);
+  line.setAttribute("y2", y2);
+  line.setAttribute("stroke", "#3b557f");
+  line.setAttribute("stroke-width", "2");
+
+  // hover tooltip for predicate (instead of cluttered labels)
+  const title = svgEl("title");
+  title.textContent = pred;
+  line.appendChild(title);
+
+  svg.appendChild(line);
+}
+
+function renderEgoGraph(eid){
+  const svg = document.getElementById("egoGraph");
+  clearEgo();
+
+  const W = 1200, H = 560;
+  const cx = W/2, cy = H/2;
+
+  const allClaims = Object.values(graph.claims);
+
+  // collect neighbors (one hop)
+  const outgoing = allClaims
+    .filter(c => c.subject_id === eid && c.object_id)
+    .map(c => ({ id: c.object_id, pred: "OUT " + c.predicate }));
+
+  const incoming = allClaims
+    .filter(c => c.object_id === eid)
+    .map(c => ({ id: c.subject_id, pred: "IN " + c.predicate }));
+
+  const neigh = outgoing.concat(incoming);
+
+  // unique by neighbor id (keep first predicate label)
+  const seen = new Set();
+  const uniq = [];
+  for(const n of neigh){
+    if(!n.id) continue;
+    if(seen.has(n.id)) continue;
+    seen.add(n.id);
+    uniq.push(n);
+  }
+
+  const nodes = uniq.slice(0, 14);
+
+  // center node
+  drawNode(svg, cx, cy, eid, true);
+
+  if(!nodes.length){
+    const t = svgEl("text");
+    t.setAttribute("x", cx);
+    t.setAttribute("y", cy);
+    t.setAttribute("text-anchor", "middle");
+    t.setAttribute("font-size", "12");
+    t.setAttribute("fill", "#9ca3af");
+    t.textContent = "No neighbors to draw.";
+    svg.appendChild(t);
+    return;
+  }
+
+  const radius = 210;      // spread out more
+  const wobble = 18;       // slight jitter to reduce overlap
+
+  for(let i=0;i<nodes.length;i++){
+    const ang = (2*Math.PI*i)/nodes.length;
+    const x = cx + radius*Math.cos(ang) + wobble*Math.cos(3*ang);
+    const y = cy + radius*Math.sin(ang) + wobble*Math.sin(2*ang);
+
+    drawEdge(svg, cx, cy, x, y, nodes[i].pred);
+    drawNode(svg, x, y, nodes[i].id, false);
+  }
+}
+
+/* ---------- Existing entity/claim rendering ---------- */
+
+function renderEntity(eid){
+  const e = graph.entities[eid];
+  document.getElementById("entityDetails").textContent = JSON.stringify(e, null, 2);
+
+  const merges = (graph.merge_log || []).filter(m => m.keep_id === eid || m.drop_id === eid);
+  document.getElementById("mergeAudit").textContent =
+    merges.length ? JSON.stringify(merges, null, 2) : "No entity merges recorded.";
+
+  const filter = (document.getElementById("filterBox").value || "").trim().toLowerCase();
+  const allClaims = Object.values(graph.claims);
+
+  const outgoing = allClaims.filter(c => c.subject_id === eid).map(c => ({...c, _dir:"out"}));
+  const incoming = allClaims.filter(c => c.object_id === eid).map(c => ({...c, _dir:"in"}));
+  let combined = outgoing.concat(incoming);
+
+  if(filter){
+    combined = combined.filter(c => claimToText(c).toLowerCase().includes(filter));
+  }
+
+  const claimsDiv = document.getElementById("claims");
+  claimsDiv.innerHTML = "";
+
+  if(!combined.length){
+    claimsDiv.innerHTML = "<div class='muted' style='margin-top:10px'>No connected claims.</div>";
+    renderEgoGraph(eid);
+    return;
+  }
+
+  for(const c of combined){
+    const card = document.createElement("div");
+    card.className = "claim";
+
+    const subj = labelEntity(c.subject_id);
+    const obj = c.object_id ? labelEntity(c.object_id) : (c.object_text || "(none)");
+
+    const title = document.createElement("div");
+    title.className = "claimTitle";
+    title.innerHTML = `
+      <span class="pill">${c._dir === "out" ? "OUT" : "IN"}</span>
+      <strong>${c.predicate}</strong>
+      <code>${subj}</code>
+      <span class="muted">→</span>
+      <code>${obj}</code>
+    `;
+    card.appendChild(title);
+
+    const meta = document.createElement("div");
+    meta.className = "claimMeta";
+    meta.textContent = `status=${c.status}  confidence=${c.confidence}  valid_from=${c.valid_from || ""}`;
+    card.appendChild(meta);
+
+    for(const evId of (c.evidence_ids || [])){
+      const ev = graph.evidences[evId];
+      const art = graph.artifacts[ev.artifact_id];
+
+      const box = document.createElement("div");
+      box.className = "evidence";
+
+      const header = art && art.author ? `Evidence (author=${art.author}, kind=${art.metadata?.kind || ""})` : "Evidence";
+      box.innerHTML = `<div class="muted">${header}</div><div style="margin-top:6px">${ev.quote || ""}</div>`;
+      card.appendChild(box);
+    }
+
+    claimsDiv.appendChild(card);
+  }
+
+  renderEgoGraph(eid);
+}
+
+function initUI(){
+  const select = document.getElementById("entitySelect");
+  const entries = Object.values(graph.entities).map(e => [e.entity_id, labelEntity(e.entity_id)]);
+  entries.sort((a,b) => a[1].localeCompare(b[1]));
+
+  for(const [eid, label] of entries){
+    const opt = document.createElement("option");
+    opt.value = eid;
+    opt.textContent = label;
+    select.appendChild(opt);
+  }
+
+  const stats = `entities=${Object.keys(graph.entities).length} claims=${Object.keys(graph.claims).length} evidences=${Object.keys(graph.evidences).length}`;
+  document.getElementById("statsChip").textContent = stats;
+
+  select.addEventListener("change", () => renderEntity(select.value));
+  document.getElementById("filterBox").addEventListener("input", () => renderEntity(select.value));
+
+  if(entries.length){
+    select.value = entries[0][0];
+    renderEntity(select.value);
+  }
+}
+
+async function main(){
+  const res = await fetch("memory_graph.json");
+  graph = await res.json();
+  initUI();
+}
+main();
+</script>
+</body>
+</html>
