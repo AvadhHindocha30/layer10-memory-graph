@@ -9,6 +9,12 @@ This repo builds a grounded “memory graph” from GitHub issues/comments and p
 
 ---
 
+## Submission snapshot (no re-run needed)
+If you just want to view the final outputs without re-running:
+- `submission_outputs/memory_graph.json`
+- `submission_outputs/context_packs/`
+- `submission_outputs/memory_graph_view.html`
+
 ## 1) Setup (WSL / Linux)
 
 From repo root:

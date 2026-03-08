@@ -34,3 +34,9 @@ Then open:
 
 - Run instructions: `HowToRun.md`
 - Design + approach: `docs/writeup.md`
+
+## Submission snapshot
+A ready-to-view snapshot is available in `submission_outputs/`:
+- `submission_outputs/memory_graph.json`
+- `submission_outputs/context_packs/`
+- `submission_outputs/memory_graph_view.html`
