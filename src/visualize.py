@@ -30,14 +30,12 @@ HTML = """<!doctype html>
     .muted{ color: var(--muted); }
     .topbar{ margin-bottom: 16px; }
 
-    /* Make left sidebar slightly wider, but keep most space for main panel */
     .layout{
       display:grid;
       grid-template-columns: 420px 1fr;
       gap: 16px;
       align-items:start;
     }
-
     .panel{
       background: linear-gradient(180deg, var(--panel), #0b1430);
       border: 1px solid var(--line);
@@ -118,7 +116,6 @@ HTML = """<!doctype html>
       margin-bottom: 8px;
     }
 
-    /* BIG graph: this is now in main panel */
     #egoGraph{
       width: 100%;
       height: 560px;
@@ -141,7 +138,6 @@ HTML = """<!doctype html>
   </div>
 
   <div class="layout">
-    <!-- LEFT: controls + metadata -->
     <div class="panel">
       <div class="row">
         <div class="muted">Pick an entity</div>
@@ -172,7 +168,6 @@ HTML = """<!doctype html>
       </div>
     </div>
 
-    <!-- RIGHT: BIG graph + claims -->
     <div class="panel">
       <div class="card">
         <div class="cardTitle">Graph view (ego)</div>
@@ -199,7 +194,6 @@ function shortLabel(eid){
   if(!e) return eid.slice(0, 10);
   let name = (e.name || "").toString();
   if(name.length > 14) name = name.slice(0, 14) + "…";
-  // for issues like "#5817", keep as-is
   return name;
 }
 
@@ -208,8 +202,6 @@ function claimToText(c){
   const obj = c.object_id ? labelEntity(c.object_id) : (c.object_text || "(none)");
   return `${c.predicate} ${subj} -> ${obj}`;
 }
-
-/* ---------- Ego graph rendering (SVG, no libs) ---------- */
 
 function svgEl(name){
   return document.createElementNS("http://www.w3.org/2000/svg", name);
@@ -236,12 +228,11 @@ function drawNode(svg, x, y, eid, isCenter){
   text.setAttribute("x", x);
   text.setAttribute("y", y + 4);
   text.setAttribute("text-anchor", "middle");
-  text.setAttribute("font-size", "9");   // smaller text
+  text.setAttribute("font-size", "9");
   text.setAttribute("fill", "#e8f0ff");
   text.textContent = shortLabel(eid);
   g.appendChild(text);
 
-  // tooltip
   const title = svgEl("title");
   title.textContent = labelEntity(eid);
   g.appendChild(title);
@@ -264,7 +255,6 @@ function drawEdge(svg, x1, y1, x2, y2, pred){
   line.setAttribute("stroke", "#3b557f");
   line.setAttribute("stroke-width", "2");
 
-  // hover tooltip for predicate (instead of cluttered labels)
   const title = svgEl("title");
   title.textContent = pred;
   line.appendChild(title);
@@ -281,7 +271,6 @@ function renderEgoGraph(eid){
 
   const allClaims = Object.values(graph.claims);
 
-  // collect neighbors (one hop)
   const outgoing = allClaims
     .filter(c => c.subject_id === eid && c.object_id)
     .map(c => ({ id: c.object_id, pred: "OUT " + c.predicate }));
@@ -292,7 +281,6 @@ function renderEgoGraph(eid){
 
   const neigh = outgoing.concat(incoming);
 
-  // unique by neighbor id (keep first predicate label)
   const seen = new Set();
   const uniq = [];
   for(const n of neigh){
@@ -304,7 +292,6 @@ function renderEgoGraph(eid){
 
   const nodes = uniq.slice(0, 14);
 
-  // center node
   drawNode(svg, cx, cy, eid, true);
 
   if(!nodes.length){
@@ -319,8 +306,8 @@ function renderEgoGraph(eid){
     return;
   }
 
-  const radius = 210;      // spread out more
-  const wobble = 18;       // slight jitter to reduce overlap
+  const radius = 210;
+  const wobble = 18;
 
   for(let i=0;i<nodes.length;i++){
     const ang = (2*Math.PI*i)/nodes.length;
@@ -331,8 +318,6 @@ function renderEgoGraph(eid){
     drawNode(svg, x, y, nodes[i].id, false);
   }
 }
-
-/* ---------- Existing entity/claim rendering ---------- */
 
 function renderEntity(eid){
   const e = graph.entities[eid];
